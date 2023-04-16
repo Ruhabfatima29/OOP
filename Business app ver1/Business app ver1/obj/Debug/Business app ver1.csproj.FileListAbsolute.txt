@@ -1,0 +1,7 @@
+E:\OOP\Business app ver1\Business app ver1\bin\Debug\Business app ver1.exe.config
+E:\OOP\Business app ver1\Business app ver1\bin\Debug\Business app ver1.exe
+E:\OOP\Business app ver1\Business app ver1\bin\Debug\Business app ver1.pdb
+E:\OOP\Business app ver1\Business app ver1\obj\Debug\Business app ver1.csproj.AssemblyReference.cache
+E:\OOP\Business app ver1\Business app ver1\obj\Debug\Business app ver1.csproj.CoreCompileInputs.cache
+E:\OOP\Business app ver1\Business app ver1\obj\Debug\Business app ver1.exe
+E:\OOP\Business app ver1\Business app ver1\obj\Debug\Business app ver1.pdb

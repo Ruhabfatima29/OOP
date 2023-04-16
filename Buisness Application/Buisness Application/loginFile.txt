@@ -1,0 +1,14 @@
+Alia,7809,User
+Leena,8914,User
+Fizza,7832,User
+Ruhab,3456,Admin
+Alyan,4578,User
+Saima,7979,Admin
+Ali,1134,Admin
+Fahad,4567,Admin
+M Ahmad,7834,Admin
+hammad,1234,Admin
+abdullah,1234,User
+Aqsa,6788,Admin
+Mustafa,7890,Admin
+Mustafa,8901,Admin

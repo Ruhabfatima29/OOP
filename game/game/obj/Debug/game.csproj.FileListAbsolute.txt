@@ -1,0 +1,10 @@
+E:\OOP\game\game\bin\Debug\game.exe.config
+E:\OOP\game\game\bin\Debug\game.exe
+E:\OOP\game\game\bin\Debug\game.pdb
+E:\OOP\game\game\obj\Debug\game.csproj.AssemblyReference.cache
+E:\OOP\game\game\obj\Debug\game.csproj.CoreCompileInputs.cache
+E:\OOP\game\game\obj\Debug\game.exe
+E:\OOP\game\game\obj\Debug\game.pdb
+E:\OOP\game\game\bin\Debug\EZInput.dll
+E:\OOP\game\game\bin\Debug\EZInput.xml
+E:\OOP\game\game\obj\Debug\game.csproj.CopyComplete

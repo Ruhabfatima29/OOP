@@ -1,0 +1,10 @@
+Alia,7809,User
+Leena,8914,User
+Fizza,7832,User
+Ruhab,3456,Admin
+Ali,1134,Admin
+ruhab,Admin,9087
+Bilal,Admin,6790
+
+Zoraiz,Admin,7890
+

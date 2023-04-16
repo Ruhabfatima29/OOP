@@ -1,0 +1,7 @@
+E:\OOP\week1\task1\task1\bin\Debug\task1.exe.config
+E:\OOP\week1\task1\task1\bin\Debug\task1.exe
+E:\OOP\week1\task1\task1\bin\Debug\task1.pdb
+E:\OOP\week1\task1\task1\obj\Debug\task1.csproj.AssemblyReference.cache
+E:\OOP\week1\task1\task1\obj\Debug\task1.csproj.CoreCompileInputs.cache
+E:\OOP\week1\task1\task1\obj\Debug\task1.exe
+E:\OOP\week1\task1\task1\obj\Debug\task1.pdb

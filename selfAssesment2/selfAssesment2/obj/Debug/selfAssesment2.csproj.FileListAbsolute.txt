@@ -1,0 +1,7 @@
+E:\OOP\selfAssesment2\selfAssesment2\bin\Debug\selfAssesment2.exe.config
+E:\OOP\selfAssesment2\selfAssesment2\bin\Debug\selfAssesment2.exe
+E:\OOP\selfAssesment2\selfAssesment2\bin\Debug\selfAssesment2.pdb
+E:\OOP\selfAssesment2\selfAssesment2\obj\Debug\selfAssesment2.csproj.AssemblyReference.cache
+E:\OOP\selfAssesment2\selfAssesment2\obj\Debug\selfAssesment2.csproj.CoreCompileInputs.cache
+E:\OOP\selfAssesment2\selfAssesment2\obj\Debug\selfAssesment2.exe
+E:\OOP\selfAssesment2\selfAssesment2\obj\Debug\selfAssesment2.pdb

@@ -1,0 +1,4 @@
+PMLN,Lion,Nawaz Sharif,6
+PTI,Bat,Imran Khan,7
+PPP,Arrow,Bilawal Bhutto,6
+PPL,arrow,bilawal,1
