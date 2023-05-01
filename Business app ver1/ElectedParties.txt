@@ -2,3 +2,16 @@ PMLN,Lion,Nawaz Sharif,6
 PTI,Bat,Imran Khan,7
 PPP,Arrow,Bilawal Bhutto,6
 PPL,arrow,bilawal,1
+PMLN,Lion,Nawaz Sharif,6
+PTI,Bat,Imran Khan,7
+PPP,Arrow,Bilawal Bhutto,6
+PPL,arrow,bilawal,1
+zxc,xcv,dfgh,0
+rehman,aaaa,hjhjh,0
+PMLN,Lion,Nawaz Sharif,6
+PTI,Bat,Imran Khan,7
+PPP,Arrow,Bilawal Bhutto,6
+PPL,arrow,bilawal,1
+abc,def,jkl,0
+zxc,xcv,dfgh,0
+rehman,aaaa,hjhjh,0

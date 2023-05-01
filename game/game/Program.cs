@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using EZInput;
+using game.Mickey.BL;
 namespace game
 {
     class Program
@@ -87,9 +88,9 @@ namespace game
         }
         static void game()
         {
-            int mickeyX = 3;
-            int mickeyY = 10;
-           
+            Meckey mick = new Meckey();
+            mick.xMic = 3;
+            mick.yMic = 10;          
             int stinkyTimer = 1;
             int bulletCount = 0;
             int[] mickBulletX= new int[2000];
@@ -105,17 +106,13 @@ namespace game
             int stinkyBulletCount = 0;
             int score = 0;
             int key = 0;
-
             char[,] maze = new char [30, 115];
-
-
-
             string stinkyDirection = "Down";
             Console.Clear();
             loadDataFromMazeFile(maze);
             printMaze(maze);
             printStinky(ref stinkyX,ref stinkyY);
-            printMickey(ref mickeyX,ref mickeyY);
+            printMickey(mick);
             bool gameRunning = true;
             while (gameRunning == true)
             {
@@ -125,36 +122,31 @@ namespace game
                 printKeys(key);*/
                 if (Keyboard.IsKeyPressed(Key.LeftArrow))
                 {
-                    moveMickeyLeft(maze, ref mickeyX,ref mickeyY,ref mickeyHealth,ref key);
+                    moveMickeyLeft(maze, mick,ref mickeyHealth,ref key);
                 }
                 if (Keyboard.IsKeyPressed(Key.RightArrow))
                 {
-                    moveMickeyRight(maze, ref mickeyX, ref mickeyY, ref mickeyHealth, ref key);
+                    moveMickeyRight(maze, mick, ref mickeyHealth, ref key);
                 }
                 if (Keyboard.IsKeyPressed(Key.UpArrow))
                 {
-                    moveMickeyUp(maze, ref mickeyX, ref mickeyY,ref mickeyHealth,ref key);
+                    moveMickeyUp(maze, mick,ref mickeyHealth,ref key);
                 }
                 if (Keyboard.IsKeyPressed(Key.DownArrow))
                 {
-                    moveMickeyDown(maze, ref mickeyX, ref mickeyY, ref mickeyHealth, ref key);
+                    moveMickeyDown(maze, mick , ref mickeyHealth, ref key);
                 }
-                /*if (GetAsyncKeyState(VK_SPACE))
+                if (Keyboard.IsKeyPressed(Key.Space))
                 {
-                    createBullet(mickeyX, mickeyY, mickBulletX, mickBulletY, isBulletActive, bulletCount);
-                }*/
-              /*  if (stinkyTimer == 6)
+                    createBullet( mick , mickBulletX, mickBulletY, isBulletActive,ref bulletCount);
+                }
+                if (stinkyTimer == 6)
                 {
-                    moveStinky(stinkyX, stinkyY, stinkyDirection);
+                    moveStinky(ref stinkyX,ref stinkyY,ref stinkyDirection, maze);
                     stinkyTimer = 0;
                 }
-                if (theifTimer == 5)
-                {
-                    createTheifBullet(theifX, theifY, theifBulletX, theifBulletY, isTheifBulletActive, theifBulletCount);
-                    theifTimer = 0;
-                }
-                createStinkyBullet(stinkyX, stinkyY, isStinkyBulletActive, stinkyBulletX, stinkyBulletY, stinkyBulletCount);
-                createBoombieBullet(boombieBulletX, boombieBulletY, isBoombieBulletActive, boomieBulletCount, boombieX, boombieY);*/
+           
+               // createStinkyBullet(stinkyX, stinkyY, isStinkyBulletActive, stinkyBulletX, stinkyBulletY, stinkyBulletCount);
                 if (mickeyHealth <= 0 && mickeyLife > 0)
                 {
                     mickeyHealth = 50;
@@ -171,18 +163,18 @@ namespace game
                      storeDataToResumeFile();
                      gameRunning = false;
                  }*/
-                if (key >= 12)
+               /* //if (key >= 12)
                 {
                     Console.SetCursorPosition(120, 20);
                     Console.WriteLine( "You Won");
                     Thread.Sleep(200);
                     gameRunning = false;
                     Console.Read();
-                }
+                }*/
                 //moveStinkyBullet(isStinkyBulletActive, stinkyBulletX, stinkyBulletY, stinkyBulletCount);
                 stinkyTimer++;
                 
-               // moveBullet(mickBulletX, mickBulletY, isBulletActive, bulletCount);
+                moveBullet(mickBulletX, mickBulletY, isBulletActive,ref bulletCount, maze);
                 //StinkyBulletDetectionwithMickey(mickeyX, mickeyY, mickeyHealth, isStinkyBulletActive, stinkyBulletX, stinkyBulletY, stinkyBulletCount);
                 //mickBulletDetectionwithEnemies(boombieX, boombieY, mickBulletX, mickBulletY, isBulletActive, bulletCount, stinkyX, stinkyY, score, theifX, theifY);
                 Thread.Sleep(100);
@@ -215,11 +207,11 @@ namespace game
                 Console.WriteLine();
             }
         }
-        static void printMickey( ref int mickeyX,  ref int mickeyY)
+        static void printMickey( Meckey mick)
         {
             //char body = (char)178;
-            int x = mickeyX;
-            int y = mickeyY;
+            int x = mick.xMic;
+            int y = mick.yMic;
             char body = '\u2588';
             char[,] mickey=new char [5,7]  {
                 { '(', ')', '_', '_', '_', '(', ')'},
@@ -239,48 +231,40 @@ namespace game
                 Console.WriteLine();
             }
         }
-        static void moveMickeyUp(char[,] maze, ref int mickeyX, ref int mickeyY, ref int mickeyHealth, ref int key)
+        
+        static void moveMickeyUp(char[,] maze,Meckey mick, ref int mickeyHealth, ref int key)
         {
-            // checks all the coordinates in up direction
-           // char next = maze[mickeyY - 1, mickeyX];
-            char next1 = maze[mickeyY - 1, mickeyX + 1];
-            char next2 = maze[mickeyY - 1,mickeyX + 2];
-            char next3 = maze[mickeyY - 1,mickeyX + 3];
-            char next4 = maze[mickeyY - 1,mickeyX + 4];
-            char next5 = maze[mickeyY - 1,mickeyX + 5];
-            char next6 = maze[mickeyY - 1,mickeyX + 6];
+            char next = maze[mick.yMic , mick.xMic];
+            char next1 = maze[mick.yMic, mick.xMic + 1];
+            char next2 = maze[mick.yMic, mick.xMic + 2];
+            char next3 = maze[mick.yMic, mick.xMic + 3];
+            char next4 = maze[mick.yMic, mick.xMic + 4];
+            char next5 = maze[mick.yMic, mick.xMic + 5];
+            char next6 = maze[mick.yMic, mick.xMic + 6];
 
-            if (/*(next == ' ' || next == 'k' || next == '%')*/ /*&&*/ (next1 == ' ' || next1 == 'k' || next1 == '%') && (next2 == ' ' || next2 == 'k' || next2 == '%') && (next3 == ' ' || next3 == 'k' || next3 == '%') && (next4 == ' ' || next4 == 'k' || next4 == '%') && (next5 == ' ' || next5 == 'k' || next5 == '%') && (next6 == ' ' || next6 == 'k' || next6 == '%'))
+            if ((next == ' ' || next == 'k' || next == '%') && (next1 == ' ' || next1 == 'k' || next1 == '%') && (next2 == ' ' || next2 == 'k' || next2 == '%') && (next3 == ' ' || next3 == 'k' || next3 == '%') && (next4 == ' ' || next4 == 'k' || next4 == '%') && (next5 == ' ' || next5 == 'k' || next5 == '%') && (next6 == ' ' || next6 == 'k' || next6 == '%'))
             {
-              /*  next = ' ';
-                next1 = ' ';
-                next2 = ' ';
-                next3 = ' ';
-                next4 = ' ';
-                next5 = ' ';  
-                next6 = ' ';*/
-               // Console.SetCursorPosition(mickeyY, mickeyX);
-                eraseMickey(ref mickeyX, ref mickeyY);
-                mickeyY = mickeyY - 1;
-               // Console.SetCursorPosition(mickeyY, mickeyX);
-                printMickey(ref mickeyX,ref mickeyY);
+                eraseMickey(mick);
+                mick.yMic--;
+                printMickey(mick);
             }
-            if (/*next == 'k' ||*/ next1 == 'k' || next2 == 'k' || next3 == 'k' || next4 == 'k'|| next5 == 'k' || next6 == 'k')
+            if (next == 'k' || next1 == 'k' || next2 == 'k' || next3 == 'k' || next4 == 'k')
             {
                 key = key + 1;
             }
-            if (/*next == '%' ||*/ next1 == '%' || next2 == '%' || next3 == '%' || next4 == '%')
+            if (next == '%' || next1 == '%' || next2 == '%' || next3 == '%' || next4 == '%')
             {
                 mickeyHealth = mickeyHealth + 10;
             }
         }
-        static void eraseMickey(ref int mickeyX,ref int mickeyY)
+
+        static void eraseMickey(Meckey mick)
         {
-            int x = mickeyX;
-            int y = mickeyY;
+            int x = mick.xMic;
+            int y = mick.yMic;
             for (int row = 0; row < 5; row++)
             {
-                Console.SetCursorPosition(x, y);
+                Console.SetCursorPosition(x,y);
                 for (int col = 0; col < 7; col++)
                 {
                     Console.Write(' ');
@@ -290,23 +274,23 @@ namespace game
 
             }
         }
-        static void moveMickeyDown(char[,] maze ,ref int mickeyX,ref int mickeyY,ref int mickeyHealth,ref int key)
+        static void moveMickeyDown(char[,] maze, Meckey mick, ref int mickeyHealth, ref int key)
         {
-            char next =  maze[ mickeyY + 5, mickeyX];
-            char next1 = maze[ mickeyY + 5, mickeyX + 1];
-            char next2 = maze[ mickeyY + 5, mickeyX + 2];
-            char next3 = maze[ mickeyY + 5, mickeyX + 3];
-            char next4 = maze[ mickeyY + 5, mickeyX + 4];
-            char next5 = maze[ mickeyY + 5, mickeyX + 5];
-            char next6 = maze[ mickeyY + 5, mickeyX + 6];
+            char next  = maze[mick.yMic + 6, mick.xMic];
+            char next1 = maze[mick.yMic + 6, mick.xMic + 1];
+            char next2 = maze[mick.yMic + 6, mick.xMic + 2];
+            char next3 = maze[mick.yMic + 6, mick.xMic + 3];
+            char next4 = maze[mick.yMic + 6, mick.xMic + 4];
+            char next5 = maze[mick.yMic + 6, mick.xMic + 5];
+            char next6 = maze[mick.yMic + 6, mick.xMic + 6];
 
             if ((next == ' ' || next == 'k' || next == '%') && (next1 == ' ' || next1 == 'k' || next1 == '%') && (next2 == ' ' || next2 == 'k' || next2 == '%') && (next3 == ' ' || next3 == 'k' || next3 == '%') && (next4 == ' ' || next4 == 'k' || next4 == '%') && (next5 == ' ' || next5 == 'k' || next5 == '%') && (next6 == ' ' || next6 == 'k' || next6 == '%'))
             {
                 //Console.SetCursorPosition(mickeyY, mickeyX);
-                eraseMickey(ref mickeyX,ref mickeyY);
-                mickeyY = mickeyY + 1;
-               // Console.SetCursorPosition(mickeyY, mickeyX);
-                printMickey(ref mickeyX,ref mickeyY);
+                eraseMickey(mick);
+                mick.yMic = mick.yMic + 1;
+                // Console.SetCursorPosition(mickeyY, mickeyX);
+                printMickey(mick);
             }
             if (next == 'k' || next1 == 'k' || next2 == 'k' || next3 == 'k' || next4 == 'k')
             {
@@ -317,23 +301,24 @@ namespace game
                 mickeyHealth = mickeyHealth + 10;
             }
         }
-        static void moveMickeyLeft(char[,] maze,ref int mickeyX, ref int mickeyY,ref int mickeyHealth,ref int key)
+       
+        static void moveMickeyLeft(char[,] maze,Meckey mick,ref int mickeyHealth,ref int key)
         {
 
-            char next = maze[mickeyY,mickeyX - 1 ];
-            char next1 = maze[mickeyY + 1, mickeyX - 1];
-            char next2 = maze[mickeyY + 2, mickeyX - 1];
-            char next3 = maze[mickeyY + 3, mickeyX - 1];
-            char next4 = maze[mickeyY + 4, mickeyX - 1];
+            char next = maze[mick.yMic, mick.xMic - 1 ];
+            char next1 = maze[mick.yMic + 1, mick.xMic - 1];
+            char next2 = maze[mick.yMic + 2, mick.xMic - 1];
+            char next3 = maze[mick.yMic + 3, mick.xMic - 1];
+            char next4 = maze[mick.yMic + 4, mick.xMic - 1];
            
 
             if ((next == ' ' || next == 'k' || next == '%') && (next1 == ' ' || next1 == 'k' || next1 == '%') && (next2 == ' ' || next2 == 'k' || next2 == '%') && (next3 == ' ' || next3 == 'k' || next3 == '%') && (next4 == ' ' || next4 == 'k' || next4 == '%'))
             {
                //Console.SetCursorPosition(mickeyY, mickeyX);
-                eraseMickey(ref mickeyX,ref mickeyY);
-                mickeyX = mickeyX - 1;
+                eraseMickey(mick);
+                mick.xMic--;
                //Console.SetCursorPosition(mickeyY, mickeyX);
-                printMickey(ref mickeyX,ref mickeyY);
+                printMickey(mick);
             }
             if (next == 'k' || next1 == 'k' || next2 == 'k' || next3 == 'k' || next4 == 'k')
             {
@@ -344,27 +329,20 @@ namespace game
                 mickeyHealth = mickeyHealth + 10;
             }
         }
-        static void moveMickeyRight(char[,] maze,ref int mickeyX,ref int mickeyY,ref int mickeyHealth,ref int key)
+        static void moveMickeyRight(char[,] maze,Meckey mick,ref int mickeyHealth,ref int key)
         {
-            char next = maze[ mickeyY, mickeyX + 7];
-            char next1 = maze[mickeyY + 1,mickeyX + 7];
-            char next2 = maze[ mickeyY + 2, mickeyX + 7];
-            char next3 = maze[ mickeyY + 3, mickeyX + 7];
-            char next4 = maze[ mickeyY + 4, mickeyX + 7];
-            /* char next = maze[mickeyX, mickeyY + 6];
-             char next1 = maze[mickeyX + 1, mickeyY + 6];
-             char next2 = maze[mickeyX + 2, mickeyY + 6];
-             char next3 = maze[mickeyX + 3, mickeyY + 6];
-             char next4 = maze[mickeyX + 4, mickeyY + 6];
-             char next5 = maze[mickeyX + 5, mickeyY + 6];
-             char next6 = maze[mickeyX + 6, mickeyY + 6];*/
+            char next = maze[mick.yMic, mick.xMic + 7];
+            char next1 = maze[mick.yMic + 1, mick.xMic + 7];
+            char next2 = maze[mick.yMic + 2, mick.xMic + 7];
+            char next3 = maze[mick.yMic + 3, mick.xMic + 7];
+            char next4 = maze[mick.yMic + 4, mick.xMic + 7];
             if ((next == ' ' || next == 'k' || next == '%') && (next1 == ' ' || next1 == 'k' || next1 == '%') && (next2 == ' ' || next2 == 'k' || next2 == '%') && (next3 == ' ' || next3 == 'k' || next3 == '%') && (next4 == ' ' || next4 == 'k' || next4 == '%'))
             {
                 //Console.SetCursorPosition(mickeyY, mickeyX);
-                eraseMickey(ref mickeyX,ref mickeyY);
-                mickeyX = mickeyX + 1;
+                eraseMickey(mick);
+                mick.xMic++;
                // Console.SetCursorPosition(mickeyY, mickeyX);
-                printMickey(ref mickeyX,ref mickeyY);
+                printMickey(mick);
             }
             if (next == 'k' || next1 == 'k' || next2 == 'k' || next3 == 'k' || next4 == 'k')
             {
@@ -388,11 +366,11 @@ namespace game
         }
         static void printStinky(ref int stinkyX,ref int stinkyY)
         {
-            char head = (char)1;
-            char body = (char)178;
-            char arrow = (char)174;
-            char b = (char)185;
-            char c = (char)186;
+            char head = '\u0001';
+            char body = '\u2588';
+            char arrow = '\u2192';
+            char b = '\u00B9';
+            char c = '\u2502';
             char[,] stinky = new char [3,6]{
             { ' ', ' ', head, ' ', ' ', ' '},
             { arrow, b, body, body, '>',' '},
@@ -406,6 +384,88 @@ namespace game
                     Console.Write(stinky[row,col]);
                 }
             }
+        }
+        static void moveStinky(ref int stinkyX,ref int stinkyY,ref string stinkyDirection, char[,] maze)
+        {
+            if (stinkyDirection == "Up")
+            {
+                char next = maze[ stinkyY , stinkyX];
+                char next1 = maze[ stinkyY  , stinkyX + 1];
+                char next2 = maze[ stinkyY , stinkyX + 2];
+                if (next == ' ' && next1 == ' ' && next2 == ' ')
+                {
+                    eraseStinky(ref stinkyX, ref stinkyY);
+                    stinkyY--;
+                    printStinky(ref stinkyX,ref stinkyY);
+                }
+                if (next == '$')
+                {
+                    stinkyDirection = "Down";
+                }
+            }
+            if (stinkyDirection == "Down")
+            {
+                char next = maze[stinkyY + 4, stinkyX];
+                char next1 = maze[stinkyY + 4, stinkyX + 1];
+                char next2 = maze[stinkyY + 4, stinkyX + 2];
+                char next3 = maze[stinkyY + 4, stinkyX + 3];
+                if (next == ' ' && next1 == ' ' && next2 == ' ' && next3 == ' ')
+                {
+                    eraseStinky(ref stinkyX, ref stinkyY);
+                    stinkyY++;
+                    printStinky(ref stinkyX, ref stinkyY);
+                }
+                if (next == '$')
+                {
+                    stinkyDirection = "Up";
+                }
+            }
+
+        }
+        static void moveBullet(int[] mickBulletX, int[] mickBulletY, bool[] isBulletActive, ref int bulletCount, char[,] maze)
+        {
+            for (int i = 0; i < bulletCount; i++)
+            {
+                if (isBulletActive[i] == true)
+                {
+                    char next = maze[ mickBulletY[i], mickBulletX[i] + 1];
+                    if (next != ' ')
+                    {
+                        eraseBullet(mickBulletX[i], mickBulletY[i]);
+                        makeBulletInactive(i, isBulletActive);
+                    }
+                    else
+                    {
+                        eraseBullet(mickBulletX[i], mickBulletY[i]);
+                        mickBulletX[i]++;
+                        printBullet(mickBulletX[i], mickBulletY[i]);
+                    }
+                }
+            }
+        }
+        static void eraseBullet(int x, int y)
+        {
+            Console.SetCursorPosition(x, y);
+            Console.Write(" ");
+        }
+        static void makeBulletInactive(int index, bool[] isBulletActive)
+        {
+            isBulletActive[index] = false;
+        }
+        static void printBullet(int x, int y)
+        {
+            Console.SetCursorPosition(x, y);
+            Console.Write("-");
+        }
+        static void createBullet(Meckey mick, int[] mickBulletX, int[] mickBulletY, bool[] isBulletActive,ref int bulletCount)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            mickBulletX[bulletCount] = mick.xMic + 9;
+            mickBulletY[bulletCount] = mick.yMic + 2;
+            isBulletActive[bulletCount] = true;
+            Console.SetCursorPosition(mick.xMic + 9, mick.yMic + 2);
+            Console.Write("-");
+            bulletCount++;
         }
     }
 }

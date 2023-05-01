@@ -1,0 +1,7 @@
+E:\OOP\week 3\week 3\bin\Debug\week 3.exe.config
+E:\OOP\week 3\week 3\bin\Debug\week 3.exe
+E:\OOP\week 3\week 3\bin\Debug\week 3.pdb
+E:\OOP\week 3\week 3\obj\Debug\week 3.csproj.AssemblyReference.cache
+E:\OOP\week 3\week 3\obj\Debug\week 3.csproj.CoreCompileInputs.cache
+E:\OOP\week 3\week 3\obj\Debug\week 3.exe
+E:\OOP\week 3\week 3\obj\Debug\week 3.pdb

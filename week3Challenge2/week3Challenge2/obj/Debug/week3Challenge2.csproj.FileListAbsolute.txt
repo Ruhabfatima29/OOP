@@ -1,0 +1,7 @@
+E:\OOP\week3Challenge2\week3Challenge2\bin\Debug\week3Challenge2.exe.config
+E:\OOP\week3Challenge2\week3Challenge2\bin\Debug\week3Challenge2.exe
+E:\OOP\week3Challenge2\week3Challenge2\bin\Debug\week3Challenge2.pdb
+E:\OOP\week3Challenge2\week3Challenge2\obj\Debug\week3Challenge2.csproj.AssemblyReference.cache
+E:\OOP\week3Challenge2\week3Challenge2\obj\Debug\week3Challenge2.csproj.CoreCompileInputs.cache
+E:\OOP\week3Challenge2\week3Challenge2\obj\Debug\week3Challenge2.exe
+E:\OOP\week3Challenge2\week3Challenge2\obj\Debug\week3Challenge2.pdb
