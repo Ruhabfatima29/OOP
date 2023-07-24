@@ -1,0 +1,5 @@
+New Community Center,NA-135,Johar Town
+City District School,NB-235,Salamat Pura
+Govt School Kurli,NA-123,Namal
+Govt School Majaffa,NA-89,Naroka
+New Govt Girls School,NA-189,DHA

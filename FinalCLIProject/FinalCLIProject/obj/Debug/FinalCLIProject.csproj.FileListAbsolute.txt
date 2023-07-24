@@ -1,0 +1,7 @@
+E:\Final Projects\FinalCLIProject\FinalCLIProject\obj\Debug\FinalCLIProject.csproj.AssemblyReference.cache
+E:\Final Projects\FinalCLIProject\FinalCLIProject\obj\Debug\FinalCLIProject.csproj.CoreCompileInputs.cache
+E:\Final Projects\FinalCLIProject\FinalCLIProject\bin\Debug\FinalCLIProject.exe.config
+E:\Final Projects\FinalCLIProject\FinalCLIProject\bin\Debug\FinalCLIProject.exe
+E:\Final Projects\FinalCLIProject\FinalCLIProject\bin\Debug\FinalCLIProject.pdb
+E:\Final Projects\FinalCLIProject\FinalCLIProject\obj\Debug\FinalCLIProject.exe
+E:\Final Projects\FinalCLIProject\FinalCLIProject\obj\Debug\FinalCLIProject.pdb
